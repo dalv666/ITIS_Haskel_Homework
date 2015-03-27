@@ -16,5 +16,5 @@ Rust  | Smetana
 C#  | SMITH
 Lua  | Muriel
 JavaScript  | ArnoldC
-JavaScript  | Malbolge
+Python  | Malbolge
 JavaScript  | HQ9+
