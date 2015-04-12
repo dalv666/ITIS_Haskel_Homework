@@ -68,7 +68,7 @@ factorial n = n * factorial (n-1)
 </ul>
 
 ####Задание№3
-######Подзадание№1
+######Задача№1
 
 PROBLEM A:
 
@@ -88,7 +88,7 @@ PROBLEM A:
  Design a data definition to represent the stove adjustment required.
  Call it Adjustment.
 
- =================
+___
 
  Functions:
  PROBLEM C:
@@ -96,7 +96,7 @@ PROBLEM A:
  based on the current oatmeal temperature.
  Call it oatmeal-temp-to-adjustment.
  
-######Подзадание№1
+######Задача№2
 
  Data definitions:
  PROBLEM A:
@@ -107,7 +107,7 @@ PROBLEM A:
  which the system records as false.
  Design a data definition to represent a dinner order.
  Call the type DinnerOrder.
- =================
+___
  Functions:
  
  PROBLEM B:
