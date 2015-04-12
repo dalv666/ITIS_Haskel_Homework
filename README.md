@@ -69,6 +69,7 @@ factorial n = n * factorial (n-1)
 
 ####Задание№3
 ######Подзадание№1
+
 PROBLEM A:
 
  You want to develop a system that will perfectly heat
@@ -95,7 +96,8 @@ PROBLEM A:
  based on the current oatmeal temperature.
  Call it oatmeal-temp-to-adjustment.
  
- ######Подзадание№2
+######Подзадание№1
+
  Data definitions:
  PROBLEM A:
  You are working on a system that will automate delivery for
