@@ -58,3 +58,59 @@ factorial n = n * factorial (n-1)
 	<li>Пусть факториал от числа <code>n</code> будет умножение числа <code>n</code> на факториал числа <code>n-1</code></li>
 </ul>
 Данный образец интерпретируется языком в декларативные утверждения.
+
+####Задание№2
+Написать функции:
+<ul>
+<li>Факториала</li>
+<li>Фибоначчи</li>
+<li>Аккермана</li>
+</ul>
+
+####Задание№3
+######Подзадание№1
+PROBLEM A:
+
+ You want to develop a system that will perfectly heat
+ your breakfast oatmeal every morning.
+ You are using an old stove, which can only heat oatmeal between 0°C and 20°C.
+ Based on your breakfast preferences, the perfect temperature is exactly 10°C.
+ Design a data definition to represent the possible oatmeal temperatures.
+ Call it OatmealTemp.
+
+ PROBLEM B:
+ You need the system to adjust your stove to ensure your oatmeal
+ is heated just right.
+ If the stove is too hot, its knob should be turned to the left.
+ If it is too cold, the knob should be turned right.
+ And if it is at the perfect temperature, it should be left as is.
+ Design a data definition to represent the stove adjustment required.
+ Call it Adjustment.
+
+ =================
+
+ Functions:
+ PROBLEM C:
+ Design a function that will determine the required stove adjustment
+ based on the current oatmeal temperature.
+ Call it oatmeal-temp-to-adjustment.
+ 
+ ######Подзадание№2
+ Data definitions:
+ PROBLEM A:
+ You are working on a system that will automate delivery for
+ YesItCanFly! airlines catering service.
+ There are two dinner options for each passenger, chicken or pasta.
+ They can also choose not to order a meal,
+ which the system records as false.
+ Design a data definition to represent a dinner order.
+ Call the type DinnerOrder.
+ =================
+ Functions:
+ 
+ PROBLEM B:
+ Design the function dinner-order-to-msg that consumes a dinner order
+ and produces a message for the flight attendants saying
+ what the passenger ordered.
+ For example, calling dinner-order-to-msg for a chicken dinner
+ would produce "The passenger ordered chicken."
