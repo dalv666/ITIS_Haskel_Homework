@@ -90,7 +90,8 @@ PROBLEM A:
 
 ___
 
- Functions:
+**Functions:**
+ 
  PROBLEM C:
  Design a function that will determine the required stove adjustment
  based on the current oatmeal temperature.
@@ -108,7 +109,7 @@ ___
  Design a data definition to represent a dinner order.
  Call the type DinnerOrder.
 ___
- Functions:
+ **Functions:**
  
  PROBLEM B:
  Design the function dinner-order-to-msg that consumes a dinner order
