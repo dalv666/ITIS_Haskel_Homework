@@ -1,6 +1,10 @@
-# ITIS_Haskel_Homework
-##### First homework
+# ITIS-Haskell-Homework
+Семестровый курс по Haskell
 
+####Преподаватель: Александр Дмитриевич Чичигин
+
+##### Задания:
+####Задание№1
 Not full functional  | Not functional
 ------------- | -------------
 Groovy  | Ada
@@ -12,13 +16,11 @@ Factor  | 1C
 Ruby  | Assembler
 Perl  | Forth
 Swift  | Befunge-93
-Rust  | Smetana
+Rust  | HQ9+
 C#  | SMITH
 Lua  | Muriel
 JavaScript  | ArnoldC
 Python  | Malbolge
-JavaScript  | HQ9+
-
 
 ####Императивный и Функциоальный подходы
 В данной статье я хочу рассказать вам о императивном и функциональном стиле программировании.
@@ -66,7 +68,7 @@ factorial n = n * factorial (n-1)
 <li>Фибоначчи</li>
 <li>Аккермана</li>
 </ul>
-
+######Исходники: [sources](/src/Task02/Task02.hs)
 ####Задание№3
 ######Задача№1
 
@@ -117,7 +119,7 @@ ___
  what the passenger ordered.
  For example, calling dinner-order-to-msg for a chicken dinner
  would produce "The passenger ordered chicken."
-
+######Исходники: [sources](/src/Task03/Task03.hs)
 
 ####Задание№4
 ######Задача№1
@@ -137,7 +139,7 @@ ___
 Создать тип данных для списков, в которых чередуются элементы двух разных типов. Например, список из строк и целых чисел может быть таким: <code>["Hello", 5, "World", 15]</code> (синтаксис является псевдокодом, в программе этот список будет выглядеть по-другому).
 Реализовать функцию определения длины такого списка.
 Реализовать функцию dmap, принимающую такой список и две функции преобразования элементов, и возвращающую новый список, содержащий преобразованные элементы в том же порядке, что и исходные.
-
+######Исходники: [sources](/src/Task04/Task04.hs)
 ####Задание№5
 ######Задача№1
 
@@ -148,3 +150,4 @@ ___
 Выразите функцию <code>concatMap :: (a -> [b]) -> [a] -> [b]</code> используя явную рекурсию.
 То же самое, используя функцию <code>foldl</code>.
 То же самое, используя функцию <code>foldr</code>.
+######Исходники: [sources](/src/Task05/Task05.hs)
