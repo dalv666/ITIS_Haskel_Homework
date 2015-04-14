@@ -1,7 +1,10 @@
 module LambdaInter where
 
 type Name = Char
-data Term = Var Name | App Term Term | Abstr Name Term
+
+data Term = Var Name
+          | Abstr Name Term
+          | App Term Term
 -- intetrp. representation of lambda-terms
 
 fnForTerm :: Term -> a
@@ -10,20 +13,20 @@ fnForTerm term = case term of
 					App term1 term2 -> undefined
 					Abstr name term  -> undefined
 
-
+--Evaluation fuction
 eval :: Term -> Term
-eval (Var var) = Var var
-eval (Abstr name term) = Abstr name (eval term)
-eval (App (Var var) term2) = Var var
-eval (App (Abstr name term1) term2) = eval (reduct term2 term1 name)
-eval (App (App (Var name) term1) term2) = App (App (Var name) term1) term2
-eval (App (App term1 term2) term3) = eval ((App (eval (App term1 term2))) term3)
+eval (Abstr name term) = Abstr name term
+eval (Var name) = Var name
+eval (App term1 term2)  = case eval term1 of
+  						Abstr name term3 -> eval (subst name term2 term3)
+  						result -> App result term2
 
-reduct :: Term -> Term -> Char -> Term
---δ α β η redaction function
-reduct term1 (Var name1) name2 = if name1 == name2 then term1 else Var name1
-reduct term1 (App term2 term3) name = App (reduct term1 term2 name) (reduct term1 term3 name)
-reduct term1 (Abstr name1 term2) name2 = if name1 == name2 then (Abstr name1 term2) else case term2 of
-																								Abstr name3 term3 -> Abstr name1 (reduct term1 (Abstr name3 term3) name2)
-																								App term3 term4   -> Abstr name1 (reduct term1 (App term3 term4) name2)
-																								Var name3 		  -> if name3 == name1 then (Abstr name1 term2) else reduct term1 (Var name3) name2
+--Substitution function
+subst :: Name -> Term -> Term -> Term
+subst name1 term1 (Abstr name2 term2) 
+							| name1 /= name2  = Abstr name2 (subst name1 term1 term2)
+							| otherwise = Abstr name2 term2
+subst name1 term1 (App term2 term3) = App (subst name1 term1 term2) (subst name1 term1 term3)
+subst name1 term1 (Var name2)
+							| name1 == name2     = term1
+							| otherwise          = Var name2
