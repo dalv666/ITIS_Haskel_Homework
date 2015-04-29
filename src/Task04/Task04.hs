@@ -1,42 +1,62 @@
 module Task04 where
 
-data BSTree = BNil | Node { value::Int, leftValue::BSTree, rightValue::BSTree}
+--Task№1
+data BinTree = EmptyBT | Node Int (BinTree) (BinTree) deriving (Show,Eq)
+-- intetrp. binary search tree
 
+fnForBinTree :: BinTree -> a
+fnForBinTree tree = case tree of
+					EmptyBT -> (undefined tree)
+					Node _ _ _ -> (undefined tree)
 
-bsTreeSum :: BSTree -> Int
-bsTreeSum BNil = 0
-bsTreeSum tree = bsTreeSum((leftValue tree)) + bsTreeSum((rightValue tree)) + (value tree)
+treeSum :: BinTree -> Int
+treeSum EmptyBT = 0
+treeSum (Node value left right) = value + treeSum left + treeSum right
 
+treeHeight :: BinTree -> Int
+treeHeight EmptyBT = 0
+treeHeight (Node value left right) = 1 + max (treeHeight left) (treeHeight right)
 
-bsTreeHight :: BSTree -> Int
-bsTreeHight BNil = 0
-bsTreeHight tree = 1 + max (bsTreeHight (rightValue tree)) (bsTreeHight (leftValue tree))
-
-bsTreeContains :: BSTree -> Int -> Bool
-bsTreeContains BNil val = False
-bsTreeContains tree val = bsTreeContains (rightValue tree) val || bsTreeContains (leftValue tree) val || val == (value tree)
+treeContains :: Int -> BinTree -> Bool
+treeContains value EmptyBT = False
+treeContains value (Node value1 left right)
+	| value == value1 = True
+	| value < value1  = treeContains value left
+	| value > value1  = treeContains value right
 						
 
-data UBSTree a = UBNil | UNode { uvalue::a, uleftValue::UBSTree a, urightValue::UBSTree a}
+--Task№2
+data UniBinTree a = Empty | Node1 a (UniBinTree a) (UniBinTree a) deriving (Show, Eq)
+--intetrp. generic binary search tree
 
-ubsTreeHight :: (UBSTree a) -> Int
-ubsTreeHight UBNil = 0
-ubsTreeHight tree = 1 + max (ubsTreeHight (urightValue tree)) (ubsTreeHight (uleftValue tree))
+fnForUniBinTree :: UniBinTree a -> b
+fnForUniBinTree tree = case tree of
+					Empty -> (undefined tree)
+					Node1 _ _ _ -> (undefined tree)
 
-tmap :: (UBSTree a) -> (a->b) -> (UBSTree b)
-tmap UBNil trans = UBNil
-tmap (UNode val left right) trans = (UNode (trans val) (tmap left trans) (tmap right trans))
+ubTreeHight :: UniBinTree a -> Int
+ubTreeHight Empty = 0
+ubTreeHight (Node1 a left right) = 1 + max (ubTreeHight left) (ubTreeHight right)
+
+tmap :: (a -> b) -> UniBinTree a -> UniBinTree b
+tmap tr Empty = Empty
+tmap tr (Node1 value left right) = Node1 (tr value) (tmap tr left) (tmap tr right)
 
 
 
-data Alternate a b = ALNull | ANode { avalue::a , nextB::Alternate b a} | BNode { bvalue::b , nextA::Alternate a b}
-alternateLenght :: (Alternate a b) -> Int
-alternateLenght ALNull = 0
-alternateLenght (ANode a nextB) = 1 + alternateLenght nextB
-alternateLenght (BNode a nextA) = 1 + alternateLenght nextA
+--Task№3
+data AList a b = EmptyAD | DList a (AList b a) deriving (Show, Eq)
+--intetrp. generic alternate list
 
---Why it's not work?
-dmap :: (Alternate a b) -> (a->c) -> (b->d) -> (Alternate c d)
-dmap ALNull _ _ = ALNull
---dmap (ANode avalue nextB) tr1 tr2 = (ANode (tr1 avalue) (dmap nextB tr1 tr2))
---dmap (BNode bvalue nextA) tr1 tr2 = (BNode (tr2 bvalue) (dmap nextA tr1 tr2))
+fnForAList :: AList a b -> c
+fnForAList list = case list of
+					EmptyAD -> (undefined list)
+					DList _ _ -> (undefined list)
+
+listLenght :: AList a b -> Int
+listLenght EmptyAD = 0
+listLenght (DList value list) = 1 + listLenght list
+
+dmap :: (a -> c) -> (b -> d) -> AList a b -> AList c d
+dmap tr1 tr2 EmptyAD = EmptyAD
+dmap tr1 tr2 (DList value list) = DList (tr1 value) (dmap tr2 tr1 list)

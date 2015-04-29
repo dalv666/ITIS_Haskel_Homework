@@ -9,7 +9,7 @@ data Term =  Var Name
 
 data Type =  TypeInt 
 			| TypeBool 
-			| TypeExsp 
+			| TypeExcp 
 			| Fun Type Type deriving (Show, Eq, Ord)
 
 data ParType = ParInt Int 
@@ -17,27 +17,26 @@ data ParType = ParInt Int
 
 type Context = [(Name, Type)]
 
-
 look :: Context -> Char -> Type
-look [] name = TypeExsp
+look [] name = TypeExcp
 look ((name,type1):context) name2 | name == name2    = type1
                                   | otherwise		 = look context name2
 
 checkOnFun :: Type -> Type -> Type
 checkOnFun (Fun term1 term2) term3 = if (term1 == term3) 
 									then term2
-									else TypeExsp
-checkOnFun _ _ = TypeExsp
+									else TypeExcp
+checkOnFun _ _ = TypeExcp
 
 checkTerm :: Context -> Term -> Type
 checkTerm _ (Par (ParInt a)) = TypeInt
 checkTerm _ (Par (ParBool a)) = TypeBool
 checkTerm context (Var x) = look context x
-checkTerm context (App term1 term2) = if ((checkTerm context term1) == TypeExsp || (checkTerm context term2) == TypeExsp) 
-                                    then TypeExsp else checkOnFun (checkTerm context term1) (checkTerm context term2)
-checkTerm context (Abstr name type1 term) =  if ((checkTerm ((name,type1):context) term) /= TypeExsp) 
+checkTerm context (App term1 term2) = if ((checkTerm context term1) == TypeExcp || (checkTerm context term2) == TypeExcp) 
+                                    then TypeExcp else checkOnFun (checkTerm context term1) (checkTerm context term2)
+checkTerm context (Abstr name type1 term) =  if ((checkTerm ((name,type1):context) term) /= TypeExcp) 
 									then Fun type1 (checkTerm ((name,type1):context) term)
-									else TypeExsp
+									else TypeExcp
 
 check :: Type -> Bool
-check type1 = not (type1 == TypeExsp) 
+check type1 = not (type1 == TypeExcp) 
