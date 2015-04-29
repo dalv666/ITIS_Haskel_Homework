@@ -19,5 +19,4 @@ myConcatMapR :: (a -> [b]) -> [a] -> [b]
 myConcatMapR tr =  foldr(\y ys -> tr y ++ ys) []
 
 recConcatMap :: (a -> [b]) -> [a] -> [b]
-recConcatMap tr [] = []
 recConcatMap tr (x:xs) = tr x ++ recConcatMap tr xs
